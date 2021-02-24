@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {BrowserRouter as Router, Route , Switch} from "react-router-dom"; //ดึง Router Route Switch มาใช้
+import Home from "./pages/Home";
+import AddProduct from "./pages/AddProduct";
+import EditProduct from "./pages/EditProduct";
+import Menu from "./components/Menu";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+       <Router>
+         <Menu /> {/* ดึงหน้า Menu มาใช้ จาก components /*/} 
+         <Switch>
+           <Route exact path="/" component={Home} /> {/* exact path คือหน้าแรกที่มันจะไป/*/} 
+           <Route path="/home" component={Home} />{/* ถ้า /home จะไปที่ component Home ที่ import มา/*/} 
+           <Route path="/add" component={AddProduct} />
+           <Route path="/edit/:id" component={EditProduct} /> {/* จะไปที่หน้า edit ที่ id ที่ส่งไป/*/} 
+         </Switch>
+       </Router>
   );
-}
+};
 
 export default App;
